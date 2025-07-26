@@ -1231,9 +1231,7 @@
                 document.getElementById('resume-preview-modal').classList.add('hidden');
             });
             
-            document.getElementById('print-resume').addEventListener('click', () => {
-                const printContent = document.getElementById('resume-content').innerHTML;
-                const originalContent = document.body.innerHTML;
+          
                 
                 document.body.innerHTML = `
                     <style>
