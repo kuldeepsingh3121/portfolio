@@ -1336,19 +1336,7 @@
                 initializeEventListeners();
             });
             
-            // Download PDF
-            document.getElementById('download-pdf').addEventListener('click', () => {
-                const resumeContent = document.getElementById('resume-content');
-                const options = {
-                    margin: 10,
-                    filename: 'Kuldeep_Singh_Resume.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-                html2pdf().from(resumeContent).set(options).save();
-            });
-            
+          
             // Contact form
             document.getElementById('contact-form').addEventListener('submit', (e) => {
                 e.preventDefault();
