@@ -1,1193 +1,733 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuldeep Singh - Full Stack Developer | AI/ML Enthusiast</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            light: '#3B82F6',
-                            dark: '#60A5FA'
-                        },
-                        secondary: {
-                            light: '#1E293B',
-                            dark: '#F1F5F9'
-                        },
-                        background: {
-                            light: '#FFFFFF',
-                            dark: '#0F172A'
-                        },
-                        card: {
-                            light: '#F1F5F9',
-                            dark: '#1E293B'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-        
-        html {
-            scroll-behavior: smooth;
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuldeep Singh - Web Developer &amp; AIML Student</title>
+  <meta name="description" content="Portfolio of Kuldeep Singh - Web Developer, AIML Student">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
         
-        .skill-pill {
+        * {
+            box-sizing: border-box;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
             transition: all 0.3s ease;
         }
-        
-        .skill-pill:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover {
+
+        .glass-card:hover {
             transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+            border-color: rgba(96, 165, 250, 0.3);
         }
-        
+
         .nav-link {
             position: relative;
+            transition: color 0.3s ease;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
+            bottom: -4px;
+            left: 0;
             width: 0;
             height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: currentColor;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
-        
-        .active::after {
-            width: 100%;
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #60a5fa;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
-        
-        .section-fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
         }
-        
-        .section-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #60a5fa }
         }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
         }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .dark ::-webkit-scrollbar-track {
-            background: #1E293B;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #888;
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(148, 163, 184, 0.2);
             border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        
-        .dark ::-webkit-scrollbar-thumb {
-            background: #4B5563;
-        }
-        
-        .dark ::-webkit-scrollbar-thumb:hover {
-            background: #6B7280;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Resume styles */
-        .resume-page {
-            width: 8.5in;
-            height: 11in;
-            padding: 0.5in;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            color: #333;
-            font-family: 'Inter', Arial, sans-serif;
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            border-radius: 4px;
+            transition: width 1s ease;
         }
-        
-        .resume-header {
-            text-align: center;
-            margin-bottom: 20px;
+
+        .btn-primary {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
         }
-        
-        .resume-header h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 5px;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.4);
         }
-        
-        .resume-header p {
-            font-size: 16px;
-            margin-bottom: 5px;
+
+        .btn-secondary {
+            background: rgba(30, 41, 59, 0.7);
+            color: #e2e8f0;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
         }
-        
-        .resume-contact {
+
+        .btn-secondary:hover {
+            border-color: #60a5fa;
+            background: rgba(96, 165, 250, 0.1);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .resume-section {
-            margin-bottom: 20px;
-        }
-        
-        .resume-section h2 {
-            font-size: 18px;
-            font-weight: bold;
-            border-bottom: 1px solid #3B82F6;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-            color: #3B82F6;
-        }
-        
-        .resume-item {
-            margin-bottom: 15px;
-        }
-        
-        .resume-item h3 {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .resume-item h4 {
-            font-size: 15px;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-        
-        .resume-item p {
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        
-        .resume-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .resume-skill {
-            background: #f0f4f8;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 14px;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.2);
         }
 
-        @media print {
-            @page {
-                size: letter;
-                margin: 0;
+        .social-icon:hover {
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(96, 165, 250, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
             }
-            body {
-                margin: 0;
-                padding: 0;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
             }
-            .resume-page {
-                width: 100%;
-                height: auto;
-                box-shadow: none;
+            
+            .desktop-menu {
+                display: none;
             }
         }
     </style>
-</head>
-<body class="font-sans bg-background-light dark:bg-background-dark text-secondary-light dark:text-secondary-dark transition-colors duration-300">
-    <!-- Mobile Navigation Menu -->
-    <div id="mobile-menu" class="fixed inset-0 bg-background-light dark:bg-background-dark z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300">
-        <button id="close-menu" class="absolute top-6 right-6 text-2xl">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="flex flex-col items-center space-y-6 text-xl">
-            <a href="#home" class="nav-link mobile-link">Home</a>
-            <a href="#about" class="nav-link mobile-link">About</a>
-            <a href="#skills" class="nav-link mobile-link">Skills</a>
-            <a href="#projects" class="nav-link mobile-link">Projects</a>
-            <a href="#certifications" class="nav-link mobile-link">Certifications</a>
-            <a href="#contact" class="nav-link mobile-link">Contact</a>
-        </div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body><!-- Navigation -->
+  <nav id="navbar" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(148, 163, 184, 0.1);">
+   <div style="max-width: 1200px; margin: 0 auto; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center;">
+    <div style="font-size: 1.5rem; font-weight: 700;" class="gradient-text">
+     Kuldeep Singh
     </div>
-
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-background-light dark:bg-background-dark z-40 shadow-md transition-colors duration-300">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold flex items-center">
-                <span class="text-primary-light dark:text-primary-dark">&lt;</span>
-                <span>Kuldeep</span>
-                <span class="text-primary-light dark:text-primary-dark">/&gt;</span>
-            </a>
-            
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#certifications" class="nav-link">Certifications</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-            
-            <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-card-light dark:hover:bg-card-dark transition-colors">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
-                </button>
-                
-                <button id="menu-toggle" class="md:hidden p-2 rounded-full hover:bg-card-light dark:hover:bg-card-dark transition-colors">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
+    <div class="hamburger" onclick="toggleMobileMenu()"><span></span> <span></span> <span></span>
+    </div>
+    <div class="desktop-menu" style="display: flex; gap: 2rem;"><a href="#home" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">Home</a> <a href="#about" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">About</a> <a href="#skills" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">Skills</a> <a href="#projects" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">Projects</a> <a href="#certificates" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">Certificates</a> <a href="#contact" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500;">Contact</a>
+    </div>
+   </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+   <div style="display: flex; flex-direction: column; gap: 1.5rem;"><a href="#home" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">Home</a> <a href="#about" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">About</a> <a href="#skills" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">Skills</a> <a href="#projects" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">Projects</a> <a href="#certificates" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">Certificates</a> <a href="#contact" class="nav-link" style="color: #e2e8f0; text-decoration: none; font-weight: 500; font-size: 1.125rem;" onclick="toggleMobileMenu()">Contact</a>
+   </div>
+  </div><!-- Hero Section -->
+  <section id="home" style="min-height: 100%; padding: 8rem 2rem 6rem; display: flex; align-items: center; justify-content: center;">
+   <div style="max-width: 1200px; width: 100%; text-align: center;" class="fade-in">
+    <div style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 1rem;">
+     Hello, I'm
+    </div>
+    <h1 id="heroName" style="font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem;" class="gradient-text">Kuldeep Singh</h1>
+    <div id="heroTagline" style="font-size: 1.5rem; color: #cbd5e1; margin-bottom: 2rem; min-height: 2.5rem;">
+     Web Developer | AIML Student |
+    </div>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;"><a href="https://drive.google.com/your-resume-link" target="_blank" rel="noopener noreferrer" class="btn-primary">Download Resume</a> <a href="https://github.com/kuldeepsingh3121" target="_blank" rel="noopener noreferrer" class="btn-secondary">View GitHub</a>
+    </div>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;"><a href="https://github.com/kuldeepsingh3121" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg></a> <a href="https://linkedin.com/in/kuldeepsingh3121" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+      </svg></a> <a href="https://youtube.com/@CodeWithChaudhary" target="_blank" rel="noopener noreferrer" class="social-icon" title="YouTube">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+      </svg></a> <a href="https://instagram.com/codewithchaudhary" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg></a>
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" style="padding: 6rem 2rem; background: rgba(15, 23, 42, 0.5);">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 id="aboutTitle" class="section-title gradient-text">About Me</h2>
+    <div class="glass-card" style="padding: 3rem; max-width: 900px; margin: 0 auto;">
+     <div style="display: grid; gap: 2rem;">
+      <div>
+       <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #60a5fa;">Kuldeep Singh</h3>
+       <p style="font-size: 1.125rem; color: #cbd5e1; margin-bottom: 1rem;">Web Developer | AIML Student</p>
+       <p id="aboutBio" style="color: #94a3b8; line-height: 1.8; margin-bottom: 1.5rem;">I am a passionate developer exploring AI-powered web experiences and creative tech content. Currently pursuing B.Tech in AIML from Jodhpur Institute of Engineering (Batch 2027).</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+       <div style="padding: 1.5rem; background: rgba(96, 165, 250, 0.1); border-radius: 12px; border: 1px solid rgba(96, 165, 250, 0.2);">
+        <div style="font-weight: 600; color: #60a5fa; margin-bottom: 0.5rem;">
+         🎓 Education
         </div>
-    </header>
-
-    <main class="pt-16">
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center py-20">
-            <div class="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
-                <div class="md:w-1/2 section-fade">
-                    <p class="text-primary-light dark:text-primary-dark mb-2">Hello, I'm</p>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Kuldeep Singh</h1>
-                    <h2 class="text-xl md:text-2xl mb-6 text-gray-600 dark:text-gray-400">Full Stack Developer | AI/ML Enthusiast</h2>
-                    <p class="mb-8 max-w-lg">Passionate about creating innovative solutions at the intersection of web development and artificial intelligence.</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
-                            Get in Touch
-                        </a>
-                        <button id="download-resume" class="px-6 py-3 border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-lg hover:bg-primary-light hover:bg-opacity-10 dark:hover:bg-primary-dark dark:hover:bg-opacity-10 transition-colors">
-                            Download Resume
-                        </button>
-                    </div>
-                    <div class="flex mt-8 space-x-4">
-                        <a href="https://linkedin.com/in/kuldeep-singh-287668318" target="_blank" class="text-xl hover:text-primary-light dark:hover:text-primary-dark transition-colors">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/kuldeepsingh3121" target="_blank" class="text-xl hover:text-primary-light dark:hover:text-primary-dark transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@chaudharycode" target="_blank" class="text-xl hover:text-primary-light dark:hover:text-primary-dark transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="mailto:kuldeepsingh31216@gmail.com" class="text-xl hover:text-primary-light dark:hover:text-primary-dark transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center mb-10 md:mb-0 section-fade">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center">
-                            <svg class="w-48 h-48 md:w-64 md:h-64 text-primary-light dark:text-primary-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"></path>
-                                <path d="M12 16v-4"></path>
-                                <path d="M12 8h.01"></path>
-                                <path d="M2 12h4"></path>
-                                <path d="M18 12h4"></path>
-                                <path d="M4.93 4.93l2.83 2.83"></path>
-                                <path d="M16.24 16.24l2.83 2.83"></path>
-                                <path d="M16.24 4.93l2.83-2.83"></path>
-                                <path d="M4.93 19.07l2.83-2.83"></path>
-                            </svg>
-                        </div>
-                        <div class="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-primary-light dark:bg-primary-dark flex items-center justify-center text-white">
-                            <i class="fas fa-code text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 bg-card-light dark:bg-card-dark">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16 section-fade">
-                    <h2 class="text-3xl font-bold mb-2">About Me</h2>
-                    <div class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto"></div>
-                </div>
-                
-                <div class="flex flex-col md:flex-row gap-10">
-                    <div class="md:w-1/2 section-fade">
-                        <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
-                        <p class="mb-4">I'm Kuldeep Singh, a Full Stack Developer and AI/ML enthusiast currently pursuing my BTech in Artificial Intelligence & Machine Learning at Jodhpur Institute of Engineering & Technology.</p>
-                        <p class="mb-4">I'm passionate about building innovative web applications and exploring the possibilities of artificial intelligence. My goal is to create technology that makes a positive impact.</p>
-                        <p>When I'm not coding, I enjoy sharing my knowledge on my YouTube channel "CodeWithChaudhary" and contributing to open-source projects.</p>
-                    </div>
-                    
-                    <div class="md:w-1/2 section-fade">
-                        <h3 class="text-2xl font-semibold mb-4">Personal Details</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-user text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Name</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Kuldeep Singh</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Location</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Sanganer, Jaipur</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-phone text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Phone</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">9427423428</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Email</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">kuldeepsingh31216@gmail.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-graduation-cap text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Education</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">BTech in AI & ML</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-3 flex-shrink-0">
-                                    <i class="fas fa-language text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium">Languages</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">English, Hindi</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-12 section-fade">
-                    <h3 class="text-2xl font-semibold mb-4">Education</h3>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between">
-                            <div>
-                                <h4 class="text-xl font-medium">BTech in Artificial Intelligence & Machine Learning</h4>
-                                <p class="text-gray-600 dark:text-gray-400">Jodhpur Institute of Engineering & Technology</p>
-                            </div>
-                            <div class="mt-2 md:mt-0">
-                                <span class="inline-block px-3 py-1 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full text-sm">
-                                    2023 - 2027
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16 section-fade">
-                    <h2 class="text-3xl font-bold mb-2">My Skills</h2>
-                    <div class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-code text-primary-light dark:text-primary-dark mr-3"></i>
-                            Programming
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">C</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Python</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Java</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-globe text-primary-light dark:text-primary-dark mr-3"></i>
-                            Web Development
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">HTML</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">CSS</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">JavaScript</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">React.js</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-brain text-primary-light dark:text-primary-dark mr-3"></i>
-                            AI/ML
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Agentic AI</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Gradio</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Streamlit</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-server text-primary-light dark:text-primary-dark mr-3"></i>
-                            DevOps
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Docker</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Kubernetes</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Jenkins</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">AWS</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-tools text-primary-light dark:text-primary-dark mr-3"></i>
-                            Tools
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Git</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">GitHub</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">VS Code</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Linux Terminal</span>
-                        </div>
-                    </div>
-                    
-                    <div class="section-fade">
-                        <h3 class="text-2xl font-semibold mb-6 flex items-center">
-                            <i class="fas fa-language text-primary-light dark:text-primary-dark mr-3"></i>
-                            Languages
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">English (Intermediate)</span>
-                            <span class="skill-pill px-4 py-2 bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 text-primary-light dark:text-primary-dark rounded-full">Hindi (Fluent)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 bg-card-light dark:bg-card-dark">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16 section-fade">
-                    <h2 class="text-3xl font-bold mb-2">My Projects</h2>
-                    <div class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project 1 -->
-                    <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="h-48 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white">
-                            <i class="fas fa-robot text-5xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Job Suggestor Chatbot</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">A React-based chatbot that suggests job opportunities based on user skills and preferences.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">React.js</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Backend API</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">AI</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                                </a>
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fab fa-github mr-1"></i> Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 2 -->
-                    <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center text-white">
-                            <i class="fas fa-terminal text-5xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Linux Command Launcher</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">Menu-based Linux command launcher built with Streamlit for easy command execution.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Python</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Streamlit</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Linux</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                                </a>
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fab fa-github mr-1"></i> Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Project 3 -->
-                    <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="h-48 bg-gradient-to-r from-red-500 to-orange-600 flex items-center justify-center text-white">
-                            <i class="fas fa-brain text-5xl"></i>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Agentic AI Project</h3>
-                            <p class="text-gray-600 dark:text-gray-400 mb-4">An AI agent system developed during Linux World training in Jaipur.</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Agentic AI</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">Python</span>
-                                <span class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs">ML</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
-                                </a>
-                                <a href="#" class="text-primary-light dark:text-primary-dark hover:underline">
-                                    <i class="fab fa-github mr-1"></i> Source Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="py-20">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16 section-fade">
-                    <h2 class="text-3xl font-bold mb-2">Certifications</h2>
-                    <div class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Certification 1 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                            <h3 class="text-xl font-semibold mb-2">Internshala Web Development Certificate</h3>
-                            <p class="text-gray-600 dark:text-gray-400">Comprehensive web development training covering HTML, CSS, JavaScript, and more.</p>
-                        </div>
-                        <div class="p-6 flex justify-between items-center">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                <i class="far fa-calendar-alt mr-1"></i> 2025
-                            </span>
-                            <a href="internshala certificate.pdf" class="text-primary-light dark:text-primary-dark hover:underline">
-                                View Certificate
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Certification 2 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                            <h3 class="text-xl font-semibold mb-2">Advance JavaScript FrameWork-REACT</h3>
-                            <p class="text-gray-600 dark:text-gray-400">Advanced framework(REACT) learning from L&T Edutech .</p>
-                        </div>
-                        <div class="p-6 flex justify-between items-center">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                <i class="far fa-calendar-alt mr-1"></i> 2025
-                            </span>
-                            <a href="react_certificate.jpg" class="text-primary-light dark:text-primary-dark hover:underline">
-                                View Certificate
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Certification 3 -->
-                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                            <h3 class="text-xl font-semibold mb-2">Agentic AI Summer Training</h3>
-                            <p class="text-gray-600 dark:text-gray-400">Specialized training in Agentic AI from Linux World, Jaipur.</p>
-                        </div>
-                        <div class="p-6 flex justify-between items-center">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                <i class="far fa-calendar-alt mr-1"></i> 2025
-                            </span>
-                            <a href="agentic_ai.pdf" class="text-primary-light dark:text-primary-dark hover:underline">
-                                View Certificate
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-card-light dark:bg-card-dark">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16 section-fade">
-                    <h2 class="text-3xl font-bold mb-2">Get In Touch</h2>
-                    <div class="w-20 h-1 bg-primary-light dark:bg-primary-dark mx-auto"></div>
-                </div>
-                
-                <div class="flex flex-col md:flex-row gap-10">
-                    <div class="md:w-1/2 section-fade">
-                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium mb-1">Location</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">Sanganer, Jaipur, Rajasthan, India</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-envelope text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium mb-1">Email</h4>
-                                    <a href="mailto:kuldeepsingh31216@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors">kuldeepsingh31216@gmail.com</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-phone text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium mb-1">Phone</h4>
-                                    <a href="tel:9427423428" class="text-gray-600 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark transition-colors">+91 9427423428</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-primary-light bg-opacity-20 dark:bg-primary-dark dark:bg-opacity-20 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-share-alt text-primary-light dark:text-primary-dark"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium mb-1">Social Profiles</h4>
-                                    <div class="flex space-x-4 mt-2">
-                                        <a href="https://linkedin.com/in/kuldeep-singh-287668318" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark transition-colors">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                        <a href="https://github.com/kuldeepsingh3121" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark transition-colors">
-                                            <i class="fab fa-github"></i>
-                                        </a>
-                                        <a href="https://youtube.com/@chaudharycode?si=0FYb8NQ4yLSV2SKV" target="_blank" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center hover:bg-primary-light hover:text-white dark:hover:bg-primary-dark transition-colors">
-                                            <i class="fab fa-youtube"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="md:w-1/2 section-fade">
-                        <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
-                        
-                        <form id="contact-form" class="space-y-4">
-                            <div>
-                                <label for="name" class="block mb-2 font-medium">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark" placeholder="Your Name">
-                            </div>
-                            
-                            <div>
-                                <label for="email" class="block mb-2 font-medium">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark" placeholder="Your Email">
-                            </div>
-                            
-                            <div>
-                                <label for="subject" class="block mb-2 font-medium">Subject</label>
-                                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark" placeholder="Subject">
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block mb-2 font-medium">Message</label>
-                                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark" placeholder="Your Message"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="px-6 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:opacity-90 transition-opacity">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-secondary-light dark:bg-secondary-dark text-white py-10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#home" class="text-xl font-bold flex items-center">
-                        <span class="text-primary-light dark:text-primary-dark">&lt;</span>
-                        <span>Kuldeep</span>
-                        <span class="text-primary-light dark:text-primary-dark">/&gt;</span>
-                    </a>
-                    <p class="mt-2 text-gray-400">Full Stack Developer | AI/ML Enthusiast</p>
-                </div>
-                
-                <div class="flex space-x-4">
-                    <a href="https://linkedin.com/in/kuldeep-singh-287668318" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary-light dark:hover:bg-primary-dark transition-colors">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/kuldeepsingh3121" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary-light dark:hover:bg-primary-dark transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://youtube.com/CodeWithChaudhary" target="_blank" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary-light dark:hover:bg-primary-dark transition-colors">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="mailto:kuldeepsingh31216@gmail.com" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-primary-light dark:hover:bg-primary-dark transition-colors">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 Kuldeep Singh. All rights reserved.</p>
-            </div>
+        <div style="color: #cbd5e1;">
+         Jodhpur Institute of Engineering
         </div>
-    </footer>
+        <div style="color: #94a3b8; font-size: 0.875rem;">
+         B.Tech AIML - Batch 2027
+        </div>
+       </div>
+       <div style="padding: 1.5rem; background: rgba(167, 139, 250, 0.1); border-radius: 12px; border: 1px solid rgba(167, 139, 250, 0.2);">
+        <div style="font-weight: 600; color: #a78bfa; margin-bottom: 0.5rem;">
+         📍 Location
+        </div>
+        <div style="color: #cbd5e1;">
+         Jaipur, Rajasthan
+        </div>
+        <div style="color: #94a3b8; font-size: 0.875rem;">
+         India
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Skills Section -->
+  <section id="skills" style="padding: 6rem 2rem;">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 id="skillsTitle" class="section-title gradient-text">Skills &amp; Expertise</h2>
+    <div id="skillsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;"></div>
+   </div>
+  </section><!-- Projects Section -->
+  <section id="projects" style="padding: 6rem 2rem; background: rgba(15, 23, 42, 0.5);">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 id="projectsTitle" class="section-title gradient-text">Featured Projects</h2>
+    <div id="projectsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;"></div>
+   </div>
+  </section><!-- Certificates Section -->
+  <section id="certificates" style="padding: 6rem 2rem;">
+   <div style="max-width: 1200px; margin: 0 auto;">
+    <h2 id="certificatesTitle" class="section-title gradient-text">Certifications</h2>
+    <div id="certificatesContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;"></div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" style="padding: 6rem 2rem; background: rgba(15, 23, 42, 0.5);">
+   <div style="max-width: 800px; margin: 0 auto;">
+    <h2 id="contactTitle" class="section-title gradient-text">Get In Touch</h2>
+    <div class="glass-card" style="padding: 3rem;">
+     <form id="contactForm" style="display: grid; gap: 1.5rem;">
+      <div><label for="name" style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-weight: 500;">Name</label> <input type="text" id="name" name="name" required style="width: 100%; padding: 0.75rem; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 8px; color: #e2e8f0; font-family: 'Poppins', sans-serif;">
+      </div>
+      <div><label for="email" style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-weight: 500;">Email</label> <input type="email" id="email" name="email" required style="width: 100%; padding: 0.75rem; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 8px; color: #e2e8f0; font-family: 'Poppins', sans-serif;">
+      </div>
+      <div><label for="message" style="display: block; margin-bottom: 0.5rem; color: #cbd5e1; font-weight: 500;">Message</label> <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 0.75rem; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 8px; color: #e2e8f0; font-family: 'Poppins', sans-serif; resize: vertical;"></textarea>
+      </div><button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+     </form>
+     <div id="formMessage" style="margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none;"></div>
+    </div>
+    <div style="margin-top: 3rem; text-align: center;">
+     <div style="display: grid; gap: 1rem; max-width: 500px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(30, 41, 59, 0.5); border-radius: 8px;"><span style="font-size: 1.5rem;">📧</span> <a href="mailto:kuldeepsingh31216@gmail.com" style="color: #60a5fa; text-decoration: none;">kuldeepsingh31216@gmail.com</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: rgba(30, 41, 59, 0.5); border-radius: 8px;"><span style="font-size: 1.5rem;">📍</span> <span style="color: #cbd5e1;">Jaipur, Rajasthan</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer style="padding: 3rem 2rem; background: rgba(15, 23, 42, 0.9); border-top: 1px solid rgba(148, 163, 184, 0.1);">
+   <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap;"><a href="https://github.com/kuldeepsingh3121" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg></a> <a href="https://linkedin.com/in/kuldeepsingh3121" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+      </svg></a> <a href="https://youtube.com/@CodeWithChaudhary" target="_blank" rel="noopener noreferrer" class="social-icon" title="YouTube">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+      </svg></a> <a href="https://instagram.com/codewithchaudhary" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+      <svg width="20" height="20" fill="currentColor" viewbox="0 0 24 24">
+       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg></a>
+    </div>
+    <p style="color: #94a3b8; margin-bottom: 0.5rem;">© 2024 Kuldeep Singh . All rights reserved.</p>
+    <p style="color: #64748b; font-size: 0.875rem;">Built with passion using modern web technologies</p>
+   </div>
+  </footer>
+  <script>
+        // Data
+        const skillsData = [
+            { name: "HTML", level: "Advanced" },
+            { name: "CSS", level: "Advanced" },
+            { name: "JavaScript", level: "Intermediate" },
+            { name: "React.js", level: "Intermediate" },
+            { name: "Python", level: "Intermediate" },
+            { name: "C Programming", level: "Intermediate" },
+            { name: "GitHub", level: "Intermediate" }
+        ];
 
-    <!-- Resume Preview Modal -->
-    <div id="resume-preview-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden overflow-y-auto">
-        <div class="bg-white rounded-lg p-4 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4 sticky top-0 bg-white z-10 py-2">
-                <h3 class="text-xl font-semibold">ATS-Friendly Resume</h3>
-                <div class="flex space-x-3">
-                    <button id="download-pdf" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:opacity-90 transition-opacity">
-                        <i class="fas fa-download mr-2"></i> Download PDF
-                    </button>
-                   
-                    <button id="close-preview" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-            </div>
-            
-           
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary-light dark:bg-primary-dark text-white flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Include html2pdf.js library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const htmlElement = document.documentElement;
-        
-        // Check for saved theme preference or use system preference
-        if (localStorage.getItem('theme') === 'dark' || 
-            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            htmlElement.classList.add('dark');
-        } else {
-            htmlElement.classList.remove('dark');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            htmlElement.classList.toggle('dark');
-            
-            // Save preference
-            if (htmlElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-            } else {
-                localStorage.setItem('theme', 'light');
+        const projectsData = [
+            {
+                name: "AI Chatbot Platform",
+                description: "An interactive chatbot that suggests government jobs based on user input like qualification, stream, and interests using AI/ML logic and React frontend.",
+                tech: ["React", "Python", "Flask", "ML"],
+                github: "https://github.com/kuldeepsingh3121/ai-chatbot",
+                demo: "https://ai-chatbot-demo.vercel.app"
             }
-        });
-        
-        // Mobile Menu
-        const menuToggle = document.getElementById('menu-toggle');
-        const closeMenu = document.getElementById('close-menu');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.remove('translate-x-full');
-        });
-        
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.add('translate-x-full');
-        });
-        
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('translate-x-full');
-            });
-        });
-        
-        // Navigation Active State
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
+        ];
+
+        const certificatesData = [
+             {
+                title: "Agentic AI Certificate",
+                issuer: "LInux World",
+                year: "2025",
+                url: "https://drive.google.com/your-certificate-link"
+            },
+            {
+                title: "Web Development Certificate",
+                issuer: "Internshala",
+                year: "2024",
+                url: "https://drive.google.com/your-certificate-link"
+            },
+            {
+                title: "React Certificate",
+                issuer: "L&T EduTech",
+                year: "2024",
+                url: "https://drive.google.com/your-certificate-link"
+            },
+            {
+                title: "Sigma 4.0 Batch Certificate",
+                issuer: "Apna College",
+                year: "2024",
+                url: "https://drive.google.com/your-certificate-link"
+            }
+        ];
+
+        // Default config
+        const defaultConfig = {
+            hero_name: "Kuldeep Singh",
+            hero_tagline: "Web Developer | AIML Student ",
+            about_title: "About Me",
+            about_bio: "I am a passionate developer exploring AI-powered web experiences and creative tech content. Currently pursuing B.Tech in AIML from Jodhpur Institute of Engineering (Batch 2027).",
+            skills_title: "Skills & Expertise",
+            projects_title: "Featured Projects",
+            certificates_title: "Certifications",
+            contact_title: "Get In Touch",
+            background_color: "#0f172a",
+            card_color: "#1e293b",
+            text_color: "#e2e8f0",
+            primary_color: "#60a5fa",
+            secondary_color: "#a78bfa",
+            font_family: "Poppins",
+            font_size: 16
+        };
+
+        // Render functions
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            container.innerHTML = '';
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+            skillsData.forEach((skill, index) => {
+                const levelPercentage = skill.level === 'Advanced' ? 90 : skill.level === 'Intermediate' ? 70 : 50;
                 
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Scroll Animation
-        const fadeElements = document.querySelectorAll('.section-fade');
-        
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(element => {
-            fadeObserver.observe(element);
-        });
-        
-        // Back to Top Button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Resume Modal and Preview
-        const resumeButton = document.getElementById('download-resume');
-        const resumePreviewModal = document.getElementById('resume-preview-modal');
-        const closePreview = document.getElementById('close-preview');
-        const printResume = document.getElementById('print-resume');
-        const downloadPDF = document.getElementById('download-pdf');
-        
-        resumeButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            resumePreviewModal.classList.remove('hidden');
-        });
-        
-        closePreview.addEventListener('click', () => {
-            resumePreviewModal.classList.add('hidden');
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === resumePreviewModal) {
-                resumePreviewModal.classList.add('hidden');
-            }
-        });
-        
-        // Print resume functionality
-        printResume.addEventListener('click', () => {
-            // Create a printable version of the resume
-            const printContent = document.getElementById('resume-content').innerHTML;
-            const originalContent = document.body.innerHTML;
-            
-           
-            
-            // Restore original content
-            document.body.innerHTML = originalContent;
-            
-            // Reinitialize event listeners after restoring content
-            initializeEventListeners();
-        });
-        
-        // Download PDF functionality
-        downloadPDF.addEventListener('click', () => {
-            const resumeContent = document.getElementById('resume-content');
-            
-            // Set options for PDF generation
-            const options = {
-                margin: 10,
-                filename: 'Kuldeep Singh resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
- <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
-                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                            <h3 class="text-xl font-semibold mb-2">Resume</h3>
-                            <p class="text-gray-600 dark:text-gray-400"></p>
-                        </div>
-                        <div class="p-6 flex justify-between items-center">
-                            <span class="text-sm text-gray-500 dark:text-gray-400">
-                                <i class="far fa-calendar-alt mr-1"></i> 2025
-                            </span>
-                            <a href="Kuldeep Singh resume.pdf" class="text-primary-light dark:text-primary-dark hover:underline">
-                                View Resume
-                            </a>
-                        </div>
+                const skillCard = document.createElement('div');
+                skillCard.className = 'glass-card fade-in';
+                skillCard.style.padding = '2rem';
+                skillCard.style.animationDelay = `${index * 0.1}s`;
+                
+                skillCard.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="font-size: 1.25rem; font-weight: 600; color: #cbd5e1;">${skill.name}</h3>
+                        <span style="color: #60a5fa; font-weight: 600;">${skill.level}</span>
                     </div>
-            
-            
-            // Generate and download PDF
-            html2pdf().from().set(options).save();
-        });
-        
-        // Contact Form
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real scenario, this would send the form data to a server
-            alert(`Thank you for your message, ${name}! This is a demo form.`);
-            
-            // Reset form
-            contactForm.reset();
-        });
-        
-        // Function to reinitialize all event listeners after printing
-        function initializeEventListeners() {
-            // Theme Toggle
-            document.getElementById('theme-toggle').addEventListener('click', () => {
-                htmlElement.classList.toggle('dark');
-                if (htmlElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Mobile Menu
-            document.getElementById('menu-toggle').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.remove('translate-x-full');
-            });
-            
-            document.getElementById('close-menu').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.add('translate-x-full');
-            });
-            
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('mobile-menu').classList.add('translate-x-full');
-                });
-            });
-            
-            // Back to Top
-            document.getElementById('back-to-top').addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Resume buttons
-            document.getElementById('download-resume').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('resume-preview-modal').classList.remove('hidden');
-            });
-            
-            document.getElementById('close-preview').addEventListener('click', () => {
-                document.getElementById('resume-preview-modal').classList.add('hidden');
-            });
-            
-            document.getElementById('print-resume').addEventListener('click', () => {
-                const printContent = document.getElementById('resume-content').innerHTML;
-                const originalContent = document.body.innerHTML;
-                
-                document.body.innerHTML = `
-                    <style>
-                        body {
-                            font-family: 'Inter', Arial, sans-serif;
-                            color: #333;
-                            margin: 0;
-                            padding: 0;
-                        }
-                        .resume-page {
-                            width: 8.5in;
-                            padding: 0.5in;
-                            margin: 0 auto;
-                        }
-                        .resume-header {
-                            text-align: center;
-                            margin-bottom: 20px;
-                        }
-                        .resume-header h1 {
-                            font-size: 24px;
-                            font-weight: bold;
-                            margin-bottom: 5px;
-                        }
-                        .resume-header p {
-                            font-size: 16px;
-                            margin-bottom: 5px;
-                        }
-                        .resume-contact {
-                            display: flex;
-                            justify-content: center;
-                            flex-wrap: wrap;
-                            gap: 15px;
-                            margin-bottom: 20px;
-                            font-size: 14px;
-                        }
-                        .resume-section {
-                            margin-bottom: 20px;
-                        }
-                        .resume-section h2 {
-                            font-size: 18px;
-                            font-weight: bold;
-                            border-bottom: 1px solid #3B82F6;
-                            padding-bottom: 5px;
-                            margin-bottom: 10px;
-                            color: #3B82F6;
-                        }
-                        .resume-item {
-                            margin-bottom: 15px;
-                        }
-                        .resume-item h3 {
-                            font-size: 16px;
-                            font-weight: bold;
-                            margin-bottom: 5px;
-                        }
-                        .resume-item h4 {
-                            font-size: 15px;
-                            font-style: italic;
-                            margin-bottom: 5px;
-                        }
-                        .resume-item p {
-                            font-size: 14px;
-                            margin-bottom: 5px;
-                        }
-                        .resume-skills {
-                            display: flex;
-                            flex-wrap: wrap;
-                            gap: 10px;
-                        }
-                        .resume-skill {
-                            background: #f0f4f8;
-                            padding: 5px 10px;
-                            border-radius: 15px;
-                            font-size: 14px;
-                        }
-                        @media print {
-                            @page {
-                                size: letter;
-                                margin: 0;
-                            }
-                            body {
-                                margin: 0;
-                                padding: 0;
-                            }
-                            .resume-page {
-                                width: 100%;
-                                height: auto;
-                                box-shadow: none;
-                            }
-                        }
-                    </style>
-                    <div class="resume-page">${printContent}</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: ${levelPercentage}%;"></div>
+                    </div>
                 `;
                 
-                window.print();
-                
-                // Restore original content
-                document.body.innerHTML = originalContent;
-                
-                // Reinitialize event listeners
-                initializeEventListeners();
-            });
-            
-            // Download PDF
-            document.getElementById('download-pdf').addEventListener('click', () => {
-                const resumeContent = document.getElementById('resume-content');
-                const options = {
-                    margin: 10,
-                    filename: 'Kuldeep Singh resume.pdf',
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-                html2pdf().from(resumeContent).set(options).save();
-            });
-            
-            // Contact form
-            document.getElementById('contact-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                alert(`Thank you for your message, ${name}! This is a demo form.`);
-                document.getElementById('contact-form').reset();
+                container.appendChild(skillCard);
             });
         }
+
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            container.innerHTML = '';
+            
+            projectsData.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'glass-card fade-in';
+                projectCard.style.padding = '2rem';
+                projectCard.style.animationDelay = `${index * 0.1}s`;
+                
+                const techTags = project.tech.map(tech => 
+                    `<span style="padding: 0.25rem 0.75rem; background: rgba(96, 165, 250, 0.2); color: #60a5fa; border-radius: 4px; font-size: 0.875rem;">${tech}</span>`
+                ).join('');
+                
+                projectCard.innerHTML = `
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #cbd5e1;">${project.name}</h3>
+                    <p style="color: #94a3b8; line-height: 1.6; margin-bottom: 1.5rem;">${project.description}</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                        ${techTags}
+                    </div>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding: 0.75rem 1.5rem;">
+                            <span style="display: flex; align-items: center; gap: 0.5rem;">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                GitHub
+                            </span>
+                        </a>
+                        <a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 0.75rem 1.5rem;">Live Demo</a>
+                    </div>
+                `;
+                
+                container.appendChild(projectCard);
+            });
+        }
+
+        function renderCertificates() {
+            const container = document.getElementById('certificatesContainer');
+            container.innerHTML = '';
+            
+            certificatesData.forEach((cert, index) => {
+                const certCard = document.createElement('div');
+                certCard.className = 'glass-card fade-in';
+                certCard.style.padding = '2rem';
+                certCard.style.animationDelay = `${index * 0.1}s`;
+                
+                certCard.innerHTML = `
+                    <div style="margin-bottom: 1rem;">
+                        <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem;">🏆</div>
+                        <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #cbd5e1;">${cert.title}</h3>
+                        <p style="color: #60a5fa; font-weight: 500; margin-bottom: 0.25rem;">${cert.issuer}</p>
+                        <p style="color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.5rem;">${cert.year}</p>
+                    </div>
+                    <a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding: 0.75rem 1.5rem; width: 100%; text-align: center;">View Certificate</a>
+                `;
+                
+                container.appendChild(certCard);
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById('formMessage');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:kuldeepsingh31216@gmail.com?subject=Portfolio Contact from ${encodeURIComponent(name)}&body=${encodeURIComponent(message)}%0A%0AFrom: ${encodeURIComponent(email)}`;
+            
+            window.open(mailtoLink, '_blank');
+            
+            formMessage.style.display = 'block';
+            formMessage.style.background = 'rgba(96, 165, 250, 0.2)';
+            formMessage.style.color = '#60a5fa';
+            formMessage.style.border = '1px solid rgba(96, 165, 250, 0.3)';
+            formMessage.textContent = 'Opening your email client...';
+            
+            this.reset();
+            
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 3000);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize
+        function init() {
+            renderSkills();
+            renderProjects();
+            renderCertificates();
+            
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        }
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            const heroName = document.getElementById('heroName');
+            const heroTagline = document.getElementById('heroTagline');
+            const aboutTitle = document.getElementById('aboutTitle');
+            const aboutBio = document.getElementById('aboutBio');
+            const skillsTitle = document.getElementById('skillsTitle');
+            const projectsTitle = document.getElementById('projectsTitle');
+            const certificatesTitle = document.getElementById('certificatesTitle');
+            const contactTitle = document.getElementById('contactTitle');
+
+            const baseSize = config.font_size || defaultConfig.font_size;
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'sans-serif';
+
+            if (heroName) {
+                heroName.textContent = config.hero_name || defaultConfig.hero_name;
+                heroName.style.fontSize = `${baseSize * 2.2}px`;
+                heroName.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (heroTagline) {
+                heroTagline.textContent = config.hero_tagline || defaultConfig.hero_tagline;
+                heroTagline.style.fontSize = `${baseSize * 1.5}px`;
+                heroTagline.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (aboutTitle) {
+                aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+                aboutTitle.style.fontSize = `${baseSize * 2.5}px`;
+                aboutTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (aboutBio) {
+                aboutBio.textContent = config.about_bio || defaultConfig.about_bio;
+                aboutBio.style.fontSize = `${baseSize * 1.125}px`;
+                aboutBio.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (skillsTitle) {
+                skillsTitle.textContent = config.skills_title || defaultConfig.skills_title;
+                skillsTitle.style.fontSize = `${baseSize * 2.5}px`;
+                skillsTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (projectsTitle) {
+                projectsTitle.textContent = config.projects_title || defaultConfig.projects_title;
+                projectsTitle.style.fontSize = `${baseSize * 2.5}px`;
+                projectsTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (certificatesTitle) {
+                certificatesTitle.textContent = config.certificates_title || defaultConfig.certificates_title;
+                certificatesTitle.style.fontSize = `${baseSize * 2.5}px`;
+                certificatesTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            if (contactTitle) {
+                contactTitle.textContent = config.contact_title || defaultConfig.contact_title;
+                contactTitle.style.fontSize = `${baseSize * 2.5}px`;
+                contactTitle.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            }
+
+            document.body.style.background = `linear-gradient(135deg, ${config.background_color || defaultConfig.background_color} 0%, ${config.card_color || defaultConfig.card_color} 100%)`;
+            document.body.style.color = config.text_color || defaultConfig.text_color;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.card_color || defaultConfig.card_color,
+                            set: (value) => {
+                                config.card_color = value;
+                                window.elementSdk.setConfig({ card_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_color || defaultConfig.primary_color,
+                            set: (value) => {
+                                config.primary_color = value;
+                                window.elementSdk.setConfig({ primary_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.secondary_color || defaultConfig.secondary_color,
+                            set: (value) => {
+                                config.secondary_color = value;
+                                window.elementSdk.setConfig({ secondary_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["hero_name", config.hero_name || defaultConfig.hero_name],
+                    ["hero_tagline", config.hero_tagline || defaultConfig.hero_tagline],
+                    ["about_title", config.about_title || defaultConfig.about_title],
+                    ["about_bio", config.about_bio || defaultConfig.about_bio],
+                    ["skills_title", config.skills_title || defaultConfig.skills_title],
+                    ["projects_title", config.projects_title || defaultConfig.projects_title],
+                    ["certificates_title", config.certificates_title || defaultConfig.certificates_title],
+                    ["contact_title", config.contact_title || defaultConfig.contact_title]
+                ])
+            });
+        }
+
+        // Start the app
+        init();
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9644c8f482284445',t:'MTc1MzM3NDQ0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99b52d1381f77e91',t:'MTc2MjYwNjAxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
-
-
-
-
-
-
-
