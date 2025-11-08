@@ -801,9 +801,7 @@
                     <button id="download-pdf" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:opacity-90 transition-opacity">
                         <i class="fas fa-download mr-2"></i> Download PDF
                     </button>
-                    <button id="print-resume" class="px-4 py-2 bg-primary-light text-white rounded-lg hover:opacity-90 transition-opacity">
-                        <i class="fas fa-print mr-2"></i> Print
-                    </button>
+                   
                     <button id="close-preview" class="text-gray-500 hover:text-gray-700">
                         <i class="fas fa-times text-xl"></i>
                     </button>
@@ -951,99 +949,7 @@
             const printContent = document.getElementById('resume-content').innerHTML;
             const originalContent = document.body.innerHTML;
             
-            document.body.innerHTML = `
-                <style>
-                    body {
-                        font-family: 'Inter', Arial, sans-serif;
-                        color: #333;
-                        margin: 0;
-                        padding: 0;
-                    }
-                    .resume-page {
-                        width: 8.5in;
-                        padding: 0.5in;
-                        margin: 0 auto;
-                    }
-                    .resume-header {
-                        text-align: center;
-                        margin-bottom: 20px;
-                    }
-                    .resume-header h1 {
-                        font-size: 24px;
-                        font-weight: bold;
-                        margin-bottom: 5px;
-                    }
-                    .resume-header p {
-                        font-size: 16px;
-                        margin-bottom: 5px;
-                    }
-                    .resume-contact {
-                        display: flex;
-                        justify-content: center;
-                        flex-wrap: wrap;
-                        gap: 15px;
-                        margin-bottom: 20px;
-                        font-size: 14px;
-                    }
-                    .resume-section {
-                        margin-bottom: 20px;
-                    }
-                    .resume-section h2 {
-                        font-size: 18px;
-                        font-weight: bold;
-                        border-bottom: 1px solid #3B82F6;
-                        padding-bottom: 5px;
-                        margin-bottom: 10px;
-                        color: #3B82F6;
-                    }
-                    .resume-item {
-                        margin-bottom: 15px;
-                    }
-                    .resume-item h3 {
-                        font-size: 16px;
-                        font-weight: bold;
-                        margin-bottom: 5px;
-                    }
-                    .resume-item h4 {
-                        font-size: 15px;
-                        font-style: italic;
-                        margin-bottom: 5px;
-                    }
-                    .resume-item p {
-                        font-size: 14px;
-                        margin-bottom: 5px;
-                    }
-                    .resume-skills {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 10px;
-                    }
-                    .resume-skill {
-                        background: #f0f4f8;
-                        padding: 5px 10px;
-                        border-radius: 15px;
-                        font-size: 14px;
-                    }
-                    @media print {
-                        @page {
-                            size: letter;
-                            margin: 0;
-                        }
-                        body {
-                            margin: 0;
-                            padding: 0;
-                        }
-                        .resume-page {
-                            width: 100%;
-                            height: auto;
-                            box-shadow: none;
-                        }
-                    }
-                </style>
-                <div class="resume-page">${printContent}</div>
-            `;
-            
-            window.print();
+           
             
             // Restore original content
             document.body.innerHTML = originalContent;
@@ -1064,9 +970,24 @@
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
+ <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md section-fade">
+                        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                            <h3 class="text-xl font-semibold mb-2">Resume</h3>
+                            <p class="text-gray-600 dark:text-gray-400"></p>
+                        </div>
+                        <div class="p-6 flex justify-between items-center">
+                            <span class="text-sm text-gray-500 dark:text-gray-400">
+                                <i class="far fa-calendar-alt mr-1"></i> 2025
+                            </span>
+                            <a href="internshala certificate.pdf" class="text-primary-light dark:text-primary-dark hover:underline">
+                                View Resume
+                            </a>
+                        </div>
+                    </div>
+            
             
             // Generate and download PDF
-            html2pdf().from(resumeContent).set(options).save();
+            html2pdf().from().set(options).save();
         });
         
         // Contact Form
@@ -1262,6 +1183,7 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9644c8f482284445',t:'MTc1MzM3NDQ0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
